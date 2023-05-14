@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <title
-  th:text="|${#temporals.format(date, 'yyyy/M/d')}の${room.get().roomName}|">2016/5/20の豊洲</title>
+  th:text="|${#temporals.format(date, 'yyyy/M/d')}の${room.roomName}|">2016/5/20の豊洲</title>
 </head>
 <body th:with="user=${#authentication.principal.user}">
   <div>
@@ -14,7 +14,7 @@
   <form th:object="${reservationForm}"
       th:action="@{'/reservations/' + ${date} + '/' + ${roomId}}"
       method="post">
-    会議室: <span th:text="${room.get().roomName}">豊洲</span>
+    会議室: <span th:text="${room.roomName}">豊洲</span>
     <br />
     予約者名: <span th:text="${user.lastName + ' ' + user.firstName}">山田 太郎</span>
     <br />

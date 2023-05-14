@@ -97,8 +97,7 @@ public class ReservationsController {
     String cancel(@RequestParam("reservationId") Integer reservationId, @PathVariable("roomId") Integer roomId,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date, Model model) {
         try {
-            //Reservation reservation = reservationService.findOne(reservationId);
-            Reservation reservation = reservationService.findOne(reservationId).get();
+            Reservation reservation = reservationService.findOne(reservationId);
             reservationService.cancel(reservation);
         } catch (AccessDeniedException e) {
             model.addAttribute("error", e.getMessage());

@@ -16,8 +16,7 @@ public class ReservationUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //User user = userRepository.findOne(username);
-        User user = userRepository.findById(username).get();
+        User user = userRepository.selectOne(username);
         if (user == null) {
             throw new UsernameNotFoundException(username + " is not found.");
         }

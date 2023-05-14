@@ -10,7 +10,7 @@
 	<span th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</span>
 	<a th:href="@{'/rooms/' + ${date.plusDays(1)}}">翌日 &gt;</a>
 	<ul>
-		<li th:each="room: ${rooms}">
+		<li th:each="room: ${roomsList}">
 			<a th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
 			   th:text="${room.meetingRoom.roomName}"></a>
 		</li>

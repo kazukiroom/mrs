@@ -2,30 +2,43 @@ package mrs.domain.service.room;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import mrs.domain.model.MeetingRoom;
 import mrs.domain.model.ReservableRoom;
-import mrs.domain.repository.room.MeetingRoomRepository;
-import mrs.domain.repository.room.ReservableRoomRepository;
+import mrs.domain.repository.room.JdbcMeetingRoomRepository;
+import mrs.domain.repository.room.JdbcReservableRoomRepository;
 
 @Service
 @Transactional
 public class RoomService {
+    /*
+    // リポジトリをフィールドインジェクションする場合
     @Autowired
     ReservableRoomRepository reservableRoomRepository;
     @Autowired
     MeetingRoomRepository meetingRoomRepository;
+    */
+    
+    // サービスをコンストラクタインジェクションする場合
+    private final JdbcReservableRoomRepository jdbcReservableRoomRepository;
+    private final JdbcMeetingRoomRepository jdbcMeetingRoomRepository;
+    
+    public RoomService(JdbcReservableRoomRepository jdbcReservableRoomRepository,JdbcMeetingRoomRepository jdbcMeetingRoomRepository){
+        this.jdbcReservableRoomRepository = jdbcReservableRoomRepository;
+        this.jdbcMeetingRoomRepository = jdbcMeetingRoomRepository;
+    }
+    
 
     public List<ReservableRoom> findReservableRooms(LocalDate date) {
-        return reservableRoomRepository.findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(date);
+        // リポジトリから予約可能な会議室情報を取得し、コントローラーに返却する
+        return jdbcReservableRoomRepository.findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(date);
     }
 
-    public Optional<MeetingRoom> findMeetingRoom(Integer roomId) {
-        return meetingRoomRepository.findById(roomId);
+    public MeetingRoom findMeetingRoom(Integer roomId) {
+        //return meetingRoomRepository.findById(roomId);
+        return jdbcMeetingRoomRepository.selectOne(roomId);
     }
 }
