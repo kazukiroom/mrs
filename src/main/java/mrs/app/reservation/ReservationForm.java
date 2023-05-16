@@ -7,6 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.NotNull;
 
+// 予約画面の入力チェック用のフォームクラスを用意する
+// 予約ボタンが押下された際にこのクラスのチェックが実施される
+
 @EndTimeMustBeAfterStartTime(message = "終了時刻は開始時刻より後にしてください")
 public class ReservationForm implements Serializable {
     @NotNull(message = "必須です")

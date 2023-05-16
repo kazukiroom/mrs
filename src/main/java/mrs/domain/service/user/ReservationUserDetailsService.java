@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import mrs.domain.model.User;
 import mrs.domain.repository.user.UserRepository;
 
+// 認証ユーザ情報のサービスクラス（UserDetailsServiceを実装する）
 @Service
 public class ReservationUserDetailsService implements UserDetailsService {
     @Autowired
