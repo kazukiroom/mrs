@@ -9,8 +9,8 @@ import jakarta.persistence.Id;
 
 @Entity
 public class MeetingRoom implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // 主キーを指定
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動採番(最適設定）
     private Integer roomId;
     private String roomName;
 

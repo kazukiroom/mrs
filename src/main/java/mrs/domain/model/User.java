@@ -11,12 +11,12 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "usr")
 public class User implements Serializable{
-    @Id
+    @Id // 主キーを指定
     private String userId;
     private String password;
     private String firstName;
     private String lastName;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // Enumの文字列
     private RoleName roleName;
 
     public String getUserId() {

@@ -10,11 +10,11 @@ import jakarta.persistence.MapsId;
 
 @Entity
 public class ReservableRoom implements Serializable {
-    @EmbeddedId
+    @EmbeddedId // 複合キー
     private ReservableRoomId reservableRoomId;
     @ManyToOne
     @JoinColumn(name = "room_id", insertable = false, updatable = false)
-    @MapsId("roomId")
+    @MapsId("roomId") // 外部キー
     private MeetingRoom meetingRoom;
 
     public ReservableRoom(ReservableRoomId reservableRoomId) {

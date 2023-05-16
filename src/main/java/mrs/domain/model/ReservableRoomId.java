@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Embeddable;
 
-@Embeddable
+@Embeddable // 複合クラス
 public class ReservableRoomId implements Serializable {
     private Integer roomId;
     private LocalDate reservedDate;

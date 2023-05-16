@@ -47,7 +47,9 @@ public class ReservationsController {
         form.setEndTime(LocalTime.of(10, 0));
         return form;
     }
-
+    
+    // 予約ページ
+    // http://localhost:8080/reservations/2023-05-16/1
     @RequestMapping(method = RequestMethod.GET)
     String reserveForm(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date,
             @PathVariable("roomId") Integer roomId, Model model) {
@@ -69,7 +71,8 @@ public class ReservationsController {
         user.setRoleName(RoleName.USER);
         return user;
     }
-
+    
+    // 予約ボタンを押下
     @RequestMapping(method = RequestMethod.POST)
     String reserve(@Validated ReservationForm form, BindingResult bindingResult,
             @AuthenticationPrincipal ReservationUserDetails userDetails,
@@ -92,7 +95,8 @@ public class ReservationsController {
         }
         return "redirect:/reservations/{date}/{roomId}";
     }
-
+    
+    // 取消ボタンを押下
     @RequestMapping(method = RequestMethod.POST, params = "cancel")
     String cancel(@RequestParam("reservationId") Integer reservationId, @PathVariable("roomId") Integer roomId,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date, Model model) {

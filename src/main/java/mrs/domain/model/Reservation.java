@@ -14,8 +14,8 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Reservation implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // 主キーを指定
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動採番(最適設定）
     private Integer reservationId;
     private LocalTime startTime;
     private LocalTime endTime;
